@@ -10,7 +10,7 @@
   
   <script>
   export default {
-    name: "Footer",
+    name: "FooterComp",
   data(){
   return{
       cYear: new Date().getUTCFullYear()
