@@ -4,10 +4,10 @@ import {config} from 'dotenv'
 config()
 
 const pool = mysql.createPool({
-host: process.env.host,
-user: process.env.user,
-password: process.env.password,
-database: process.env.database
+host: process.env.hostDb,
+user: process.env.userDb,
+password: process.env.pwDb,
+database: process.env.dbName
 })
 
 export {pool}
