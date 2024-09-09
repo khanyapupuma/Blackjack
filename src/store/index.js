@@ -7,7 +7,7 @@ import { applyToken } from '@/service/AuthenticatedUser.js'
 import { useCookies } from 'vue3-cookies'
 
 const { cookies } = useCookies()
-const apiURL = 'http://localhost:3001'
+const apiURL = 'http://localhost:3001/'
 
 applyToken(cookies.get('LegitUser')?.token)
 
@@ -63,9 +63,6 @@ export default createStore({
         toast.error(`Failed to delete product: ${error.message}`);
       }
       location.reload;
-     
-    
-       
     },
   
     async fetchProducts({ commit }) {

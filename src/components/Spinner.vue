@@ -1,3 +1,8 @@
 <template>
-    <img src="https://khanyapupuma.github.io/all-images/all-images/Images/icons8-book.gif" alt="Loading..." class="loading-gif">
+    <img src="https://khanyapupuma.github.io/all-images/all-images/Images/vid-gif1.gif" alt="Loading..." class="loading-gif">
   </template>
+  <script>
+  export default{
+    name : 'SpinnerComp'
+  }
+  </script>

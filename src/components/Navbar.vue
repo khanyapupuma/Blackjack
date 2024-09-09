@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
         <img
-          src="https://khanyapupuma.github.io/all-images/all-images/Images/updLogo.png"
+          src="https://khanyapupuma.github.io/all-images/all-images/Images/blkjack.png"
           alt="logo"
           class="img-fluid"
           loading="lazy"
@@ -29,7 +29,7 @@
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/products">Products</router-link>
+            <router-link class="nav-link" to="/products">Store</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link dropdown" to="/admin"> Admin</router-link>
@@ -47,39 +47,32 @@
 export default {
   name:  "NavbarComp",
 }
-
-routes
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/HomeView.vue'),
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/views/AboutMeView.vue'),
-  },
-  {
-    path: '/products',
-    name: 'Products',
-    component: () => import('@/views/ProductsView.vue')
-  },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: ()  => import('@/views/AdminView.vue')
-  },
-  {
-    path: '/reach-me',
-    name: 'ReachMe',
-    component: () => import('@/views/ReachMeView.vue')
-  }
-]
-
 </script>
 
-<style>
-
+<style scoped>
+li a:hover {
+  color: #DEBD37;
+  background-color: #0d0a0a;
+  text-shadow:  2px 2px 4px rgb(230, 233, 15);
+}
+.navbar{
+  box-shadow: 2px 6px 4px rgb(46, 44, 44);
+}
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #DEBD37;
+}
+nav {
+  background-color: #4A4A4A;
+}
 </style>
