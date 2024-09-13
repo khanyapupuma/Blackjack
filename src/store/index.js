@@ -7,7 +7,7 @@ import { applyToken } from '@/service/AuthenticatedUser.js'
 import { useCookies } from 'vue3-cookies'
 
 const { cookies } = useCookies()
-const apiURL = 'http://localhost:3001/'
+const apiURL = 'https://blackjack-76rw.onrender.com/'
 
 applyToken(cookies.get('LegitUser')?.token)
 
