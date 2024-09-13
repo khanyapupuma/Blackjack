@@ -46,9 +46,18 @@ const insertUser =async(req,res)=>{
 const deleteUser = async(req,res)=>{
     try{
        await deleteUserDb(req.params.id)
-    res.status(200).send('Data was deleted successfully ! ')
+    res.status(200).send({
+        status : res.statusCode,
+        msg:  'User deleted successfully !'
+
+    })
     }catch(e){
-        res.status(400).send('Invalid User !')
+        res.status(400).send(
+            {   
+                status :  res.statusCode,
+                failedMsg : 'Invalid User !'
+            }
+        )
     }
 }
     const updateUser=async(req,res)=>{
@@ -58,12 +67,12 @@ const deleteUser = async(req,res)=>{
         console.log(req.body);
 
         let user =await selectUserDb(req.params.id)
-        firstName ? firstName=firstName: firstName = user.firstName
+        firstName? firstName=firstName: firstName = user.firstName
         lastName? lastName=lastName: lastName = user.lastName
-        userAge ? userAge=userAge: userAge = user.userAge
+        userAge? userAge=userAge: userAge = user.userAge
         Gender ? Gender=Gender: Gender = user.Gender
-        emailAdd ?  emailAdd= emailAdd:  emailAdd = user. emailAdd
-        userProfile ?   userProfile=  userProfile:   userProfile = user.  userProfile
+        emailAdd ?  emailAdd= emailAdd:  emailAdd = user.emailAdd
+        userProfile ?   userProfile=  userProfile:   userProfile = user.userProfile
         res.json({
             results: await updateUserDb(firstName,lastName,userAge,Gender,emailAdd,userProfile, req.params.id),
             msg: 'Data was successfully updated ! '
@@ -72,13 +81,13 @@ const deleteUser = async(req,res)=>{
         }
     }
 
- const loginUser =(req,res)=>{
-    try{
-      res.json({message:"Successfully Logged in!!",token :req.body.token})
-    }catch(e){
-        res.send('Register first if you do not have login credentials ! ')
-    }
+    const loginUser = async (req, res) => {
+        if (req.isAuthenticated) {
+          res.json({ message: "Successfully Logged in!!", token: req.token });
+        } else {
+          res.status(401).send('Invalid credentials!');
+        }
+      };
 
-}
 
 export{getUsers,selectUser,insertUser,deleteUser,loginUser,updateUser}

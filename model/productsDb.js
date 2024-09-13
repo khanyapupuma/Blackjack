@@ -25,7 +25,7 @@ const insertProductDb = async (
 ) => {
   let [data] = await pool.query(
     `
-            INSERT INTO products(prodName,Quantity,Amount,Category,prodURL,prodDescription)
+            INSERT INTO Movies(prodName,Quantity,Amount,Category,prodURL,prodDescription)
             VALUES (?,?,?,?,?,?)
             `,
     [prodName, Quantity, Amount, Category, prodURL, prodDescription]
@@ -43,7 +43,7 @@ const updateProductDb = async (
   prodDescription
 ) => {
   await pool.query(
-    "UPDATE products SET prodName = ?, Quantity= ?, Amount= ?, Category = ?, prodURL= ?, prodDescription=? WHERE prodID = ?",
+    "UPDATE Movies SET prodName = ?, Quantity= ?, Amount= ?, Category = ?, prodURL= ?, prodDescription=? WHERE prodID = ?",
     [prodID, prodName, Quantity, Amount, Category, prodURL, prodDescription]
   );
 };

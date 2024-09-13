@@ -33,9 +33,6 @@ const insertProduct =async(req,res)=>{
        }catch(e){
                 res.send('All fields must be filled in , re-insert data !')
             }
-        
-        
-    
 }
 const deleteProduct = async(req,res)=>{
     try{
