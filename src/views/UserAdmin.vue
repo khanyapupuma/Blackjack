@@ -335,12 +335,14 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from 'vue-router';
 
 const store = useStore();
 const users = ref([]);
 const showModalEdit = ref(false);
 const showModalAdd = ref(false);
 const showModalLogin = ref(false);
+const router = useRouter();
 const currentUser = ref({});
 const showPassword = ref(false);
 
@@ -407,11 +409,24 @@ const closeModalLogin = () => {
 
 // Login user
 const loginUser = () => {
-  store.dispatch("login", { email: currentUser.value.emailAdd, password: currentUser.value.userPass }).then(() => {
-    showModalLogin.value = false;
-    currentUser.value = {};
-  });
+  store.dispatch("login", { email: currentUser.value.emailAdd, password: currentUser.value.userPass })
+    .then((response) => {
+      if (response) {
+        // Login successful, update the state
+        console.log("Login successful");
+        // You can also redirect the user to a protected route here
+        router.push({ name: 'protected-route' });
+      } else {
+        // Login failed, handle the error
+        console.log("Login failed");
+      }
+    })
+    .catch((error) => {
+      // Handle the error
+      console.log("Error logging in:", error);
+    });
 };
+
 
 // Delete user
 const deleteUser = async (UserID) => {

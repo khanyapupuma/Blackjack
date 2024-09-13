@@ -174,16 +174,19 @@ export default createStore({
     async login({ commit }, loginData) {
       try {
         const response = await axios.post(`${apiURL}login`, loginData);
-        console.log(apiURL);
         const { token, user } = response.data;
         commit('setToken', token);
         commit('setUser', user);
         commit('setAuthenticated', true);
         toast.success('Login successful');
       } catch (error) {
-        toast.error(`Failed to login: ${error.message}`);
+        if (error.response) {
+          toast.error(`Failed to login: ${error.response.data.message}`);
+        } else {
+          toast.error(`Failed to login: ${error.message}`);
+        }
       }
-    },
+    }
 
   
   },
