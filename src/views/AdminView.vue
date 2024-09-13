@@ -72,4 +72,42 @@ h1{
   color: black;
   margin-top: 40px;
 }
+
+@media only screen and (max-width: 768px) {
+  .profiles {
+    flex-direction: column; 
+  }
+  .profile {
+    width: 80%; 
+    margin-top: 20px;
+    margin-bottom: 20px; 
+  }
+  img {
+    width: 150px; 
+    margin-top: 10px;
+  }
+  button {
+    width: 150px; 
+    margin-top: 20px; 
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .profiles {
+    flex-direction: row; 
+  }
+  .profile {
+    width: 50%; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+  }
+  img {
+    width: 180px; 
+    margin-top: 15px; 
+  }
+  button {
+    width: 180px; 
+    margin-top: 25px;
+  }
+}
 </style>

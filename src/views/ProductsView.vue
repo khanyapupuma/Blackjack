@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <h2 class="display-2">Product Details</h2>
+      <h2 class="display-2">Products</h2>
     </div>
 
     <div class="row mb-3">
@@ -145,4 +145,60 @@ button:hover {
 .router{
   text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      margin: 20px auto;
+    }
+    .row {
+      flex-direction: column;
+    }
+    .col-md-4 {
+      width: 100%; 
+    }
+    .form-control {
+      width: 100%; 
+    }
+    button {
+      width: 100%; 
+      margin-bottom: 10px; 
+    }
+    .card {
+      height: 450px; 
+      margin: 20px; 
+      
+    }
+    .card-img {
+      width: 150px; 
+      height: 200px; 
+    }
+  }
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      width: 80%; 
+      margin: 30px auto; 
+    }
+    .row {
+      flex-direction: row; 
+    }
+    .col-md-4 {
+      width: 50%;
+    }
+    .form-control {
+      width: 100%; 
+    }
+    button {
+      width: 100%; 
+      margin-bottom: 15px; 
+    }
+    .card {
+      height: 500px; 
+      margin: 30px; 
+    }
+    .card-img {
+      width: 180px; 
+      height: 240px;
+    }
+  }
 </style>

@@ -12,7 +12,9 @@
           <h5 class="card-title fw-bold name">{{ product.prodName }}</h5>
           <p class="lead">{{ product.prodDescription }}</p>
           <p class="lead"> <bold class="genre"> Genre:</bold> {{ product.Category }}</p>
+          <p class="lead"> <b class="genre">In stock:</b> {{ product.Quantity }}</p>
           <p class="lead">R{{ product.Amount }}</p>
+          
           <button>Add to Cart</button>
         </template>
       </Card>
@@ -70,10 +72,64 @@ onMounted(() => {
   }
   .genre{
     color: #917403;
-    font-size: larger;
     font-weight: bold;
   }
   h2{
     color: black;
+  }
+    @media only screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      margin: 20px auto; 
+    }
+    .row {
+      flex-direction: column; 
+    }
+    .card {
+      margin: 20px;
+      width: 90%;
+    }
+    .card-img {
+      width: 150px; 
+      height: 200px; 
+    }
+    h2 {
+      font-size: 18px;
+    }
+    h5 {
+      font-size: 16px; 
+    }
+    button {
+      width: 100%; 
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      width: 80%;
+      margin: 30px auto; 
+    }
+    .row {
+      flex-direction: row; 
+    }
+    .card {
+      margin: 30px; 
+      width: 80%; 
+    }
+    .card-img {
+      width: 180px; 
+      height: 240px; 
+    }
+    h2 {
+      font-size: 20px; 
+    }
+    h5 {
+      font-size: 18px; 
+    }
+    button {
+      width: 100%;
+      margin-bottom: 15px;
+    }
   }
 </style>

@@ -102,6 +102,16 @@
                 />
               </div>
               <div class="mb-3">
+                <label for="price" class="form-label">Amount</label>
+                <input
+                  type="number"
+                  v-model="currentProduct.Amount"
+                  class="form-control"
+                  id="price"
+                  required
+                />
+              </div>
+              <div class="mb-3">
                 <label for="Amount" class="form-label">Quantity</label>
                 <input
                   type="number"
@@ -132,7 +142,7 @@
 
     <!-- Add Products -->
     <div
-      v-if="showModal"
+      v-if="showModalAdd"
       class="modal fade show"
       style="display: block"
       tabindex="-1"
@@ -164,7 +174,7 @@
                 <label for="price" class="form-label">Profile link</label>
                 <input
                   type="text"
-                  v-model="currentProduct.prodUrl"
+                  v-model="currentProduct.prodURL"
                   class="form-control"
                   id="price"
                   required
@@ -182,10 +192,20 @@
                 />
               </div>
               <div class="mb-3">
+                <label for="price" class="form-label">Amount</label>
+                <input
+                  type="number"
+                  v-model="currentProduct.Amount"
+                  class="form-control"
+                  id="price"
+                  required
+                />
+              </div>
+              <div class="mb-3">
                 <label for="Amount" class="form-label">Quantity</label>
                 <input
                   type="number"
-                  v-model="currentProduct.quantity"
+                  v-model="currentProduct.Quantity"
                   class="form-control"
                   id="price"
                   required
@@ -202,7 +222,7 @@
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary">
-                Save changes
+                Add Product
               </button>
             </form>
           </div>
@@ -240,8 +260,10 @@ const closeModal = () => {
   showModalEdit.value = false;
 };
 
+const newProduct = ref({});
+
 const openModalAdd = () => {
-  currentProduct.value = {};
+  newProduct.value = {};
   showModalAdd.value = true;
 };
 
@@ -271,20 +293,29 @@ const deleteProduct = (prodID) => {
 };
 
 // Add Product
+// const addProducts = async () => {
+//   try {
+//     const productData = {
+//       prodName: newProduct.value.prodName,
+//       Amount: newProduct.value.Amount,
+//       Category: newProduct.value.Category,
+//       prodURL: newProduct.value.prodURL,
+//       prodDescription: newProduct.value.prodDescription,
+//       Quantity: newProduct.value.Quantity,
+//     };
+//     await store.dispatch('addProduct', productData);
+//     await store.dispatch('fetchProducts');
+//     products.value = store.state.products;
+//   } catch (error) {
+//     console.error('Error adding product:', error);
+//   }
+// };
 const addProducts = async () => {
   try {
-    const productData = {
-      prodName: currentProduct.value.prodName,
-      Amount: currentProduct.value.Amount,
-      Category: currentProduct.value.Category,
-      prodURL: currentProduct.value.prodURL,
-      prodDescription: currentProduct.value.prodDescription,
-      Quantity: currentProduct.value.Quantity,
-    };
-    await store.dispatch('addProduct', productData);
-    await store.dispatch('fetchProducts');
-    products.value = store.state.products;
-  } catch (error) {
+    await store .dispatch('addProduct', currentProduct.value);
+    showModalAdd.value = false;
+    currentProduct.value = {};
+  } catch(error){
     console.error('Error adding product:', error);
   }
 };
@@ -311,6 +342,7 @@ h2{
   padding: 20px;
   width: 500px;
   margin: 40px auto;
+  margin-left: 450px;
 }
 .des {
   height: 250px;
@@ -348,9 +380,5 @@ button {
   margin-right: 5px;
   margin-bottom: 10px;
 }
-/* #modal{
-  border: 10px;
-  border-style: dashed;
-  border-color:black ;
-} */
+
 </style>

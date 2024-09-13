@@ -32,10 +32,16 @@
             <router-link class="nav-link" to="/products">Store</router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/checkout">Checkout</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link dropdown" to="/admin"> Admin</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/reach-me">Reach Me</router-link>
+            <router-link class="nav-link dropdown" to="/profile"> Profile</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/reach-us">Reach Me</router-link>
           </li>
         </ul>
       </div>

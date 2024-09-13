@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import UserAdmin from '@/views/UserAdmin.vue';
 
+
 const routes = [
   {
     path: '/user-admin',
@@ -11,6 +12,16 @@ const routes = [
     path: '/products-admin',
     name: 'ProductsAdmin',
     component: () => import('@/views/ProductAdmin.vue')
+  },
+  {
+    path: '/profile',
+    name: 'ProfileView',
+    component: () => import('@/views/ProfileView.vue')
+  },
+  {
+    path: '/checkout',
+    name: 'CheckoutView',
+    component: () => import('@/views/CheckoutView.vue')
   },
   {
     path: '/',

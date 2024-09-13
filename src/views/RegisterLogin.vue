@@ -1,163 +1,21 @@
 <template>
-  <div class="container">
-    <h2 class="display-4">Users Management</h2>
-    <button @click="addUserModal">Register</button>
-    <button @click="loginModal">Log In</button>
+  <div class="body">
+    <h1>Welcome to Blackjack</h1>
+    <p>
+        Welcome viewer, we are pleased that you have been interested in our website however before you continue in order for <br>
+        the protection of the website  and its users we require you to register. Please fill in the form below to register.
+        Click here to register <br>
+          <button  @click="addUserModal">
+            Register
+          </button>
+          <br>
+          If you are already registered as a user please click here to login
+          <br>
+          <button @click="loginModal">
+            Login
+          </button>
 
-    <table
-      class="table-primary table-bordered"
-      id="table"
-      :style="{
-        backgroundColor: '#4A4A4A',
-        width: '1200px',
-        borderColor: '#000000',
-        borderWidth: '40px',
-        borderStyle: 'solid',
-        color: '#ffffff',
-      }"
-    >
-      <thead class="thead-lg">
-        <tr>
-          <th>Profile</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Gender</th>
-          <th>Role</th>
-          <th>Age</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.userID">
-          <td><img :src="user.userProfile" alt="" width="80px" /></td>
-          <td>{{ user.firstName }} {{ user.lastName }}</td>
-          <td>{{ user.emailAdd }}</td>
-          <td>{{ user.Gender }}</td>
-          <td>{{ user.userRole }}</td>
-          <td>{{ user.userAge }}</td>
-          <td>
-            <button
-              @click="editUser(user)"
-              class="btn"
-              :style="{ backgroundColor: '#000000', color: '#ffffff' }"
-            >
-              Edit
-            </button>
-            <button
-              @click.prevent="deleteUser(user.UserID)"
-              class="btn"
-              :style="{ backgroundColor: '#000000', color: '#ffffff' }"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Edit User Modal -->
-    <div
-      v-if="showModalEdit"
-      class="modal fade show"
-      style="display: block"
-      tabindex="-1"
-      role="dialog"
-    >
-      <div class="modal-dialog" id="modal" role="document">
-        <div
-          class="modal-content"
-          :style="{ backgroundColor: '#ffffff', color: '#6226A' }"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">Edit User</h5>
-            <button
-              type="button"
-              class="btn-close"
-              @click="closeModalEdit"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form @submit.prevent="updateUser">
-              <div class="mb-3">
-                <label for="name" class="form-label">First Name</label>
-                <input
-                  type="text"
-                  v-model="currentUser.firstName"
-                  class="form-control"
-                  id="name"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input
-                  type="text"
-                  v-model="currentUser.lastName"
-                  class="form-control"
-                  id="lastName"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="age" class="form-label">Age</label>
-                <input
-                  type="number"
-                  v-model="currentUser.userAge"
-                  class="form-control"
-                  id="age"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="gender" class="form-label">Gender</label>
-                <input
-                  type="text"
-                  v-model="currentUser.Gender"
-                  class="form-control"
-                  id="gender"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="gender" class="form-label">User Authority</label>
-                <input
-                  type="text"
-                  v-model="currentUser.userRole"
-                  class="form-control"
-                  id="gender"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input
-                  type="email"
-                  v-model="currentUser.emailAdd"
-                  class="form-control"
-                  id="email"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="userProfile" class="form-label">User Profile</label>
-                <input
-                  type="text"
-                  v-model="currentUser.userProfile"
-                  class="form-control"
-                  id="userProfile"
-                  required
-                  placeholder="https://address"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary">
-                Save changes
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    </p>
     <!-- Add User Modal -->
     <div
       v-if="showModalAdd"
@@ -172,7 +30,7 @@
           :style="{ backgroundColor: '#ffffff', color: '#6226A' }"
         >
           <div class="modal-header">
-            <h5 class="modal-title">Add User</h5>
+            <h5 class="modal-title">Register</h5>
             <button
               type="button"
               class="btn-close"
@@ -329,6 +187,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -338,51 +197,21 @@ import { useStore } from "vuex";
 
 const store = useStore();
 const users = ref([]);
-const showModalEdit = ref(false);
 const showModalAdd = ref(false);
 const showModalLogin = ref(false);
 const currentUser = ref({});
-const showPassword = ref(false);
 
-// Fetch users on mount
-onMounted(() => {
-  store.dispatch("fetchUsers").then(() => {
-    users.value = store.state.users;
-  });
-});
-
-// Open edit modal and set current user
-const editUser = (user) => {
-  currentUser.value = { ...user };
-  showModalEdit.value = true;
-};
-
-// Close edit modal
-const closeModalEdit = () => {
-  showModalEdit.value = false;
-  currentUser.value = {};
-};
-
-// Update user
-const updateUser = () => {
-  store.dispatch("updateUser", currentUser.value).then(() => {
-    showModalEdit.value = false;
-    currentUser.value = {};
-  });
-};
-
+// Add User Modals
 // Open add user modal
 const addUserModal = () => {
   showModalAdd.value = true;
   currentUser.value = {};
 };
-
 // Close add user modal
 const closeModalAdd = () => {
   showModalAdd.value = false;
   currentUser.value = {};
 };
-
 // Add a new user
 const addUser = async () => {
   try {
@@ -394,6 +223,7 @@ const addUser = async () => {
   }
 };
 
+// Login  Modals
 // Open login modal
 const loginModal = () => {
   showModalLogin.value = true;
@@ -407,33 +237,17 @@ const closeModalLogin = () => {
 
 // Login user
 const loginUser = () => {
-  store.dispatch("login", { email: currentUser.value.emailAdd, password: currentUser.value.userPass }).then(() => {
+  store.dispatch("loginUser", currentUser.value).then(() => {
     showModalLogin.value = false;
     currentUser.value = {};
   });
 };
+// For password
+const showPassword = ref(false);
 
-// Delete user
-const deleteUser = async (UserID) => {
-  if (confirm("Are you sure you want to delete this user?")) {
-    await store.dispatch("deleteUser", UserID);
-    // console.log(userID);
-    await store.dispatch("fetchUsers");
-    users.value = [...store.state.users];
-  }
-};
 </script>
 
 <style>
-.container {
-  max-width: 100%;
-  padding: 2rem;
-}
-
-.table-primary {
-  background-color: #4a4a4a;
-}
-
 .btn {
   background-color: #000000;
   color: #ffffff;

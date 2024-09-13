@@ -29,9 +29,7 @@ export default {
 h1{
   margin-top: 40px;
 }
-.h1{
-  background-image: url('');
-}
+
 .para{
   text-align: center;
   width: 1200px;
@@ -44,5 +42,30 @@ h1{
 }
 b{
   color: rgb(159, 138, 14);
+}
+@media only screen and (max-width: 768px) {
+  .para {
+    width: 90%; 
+    margin-top: 60px; 
+    margin-bottom: 60px; 
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  b {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .para {
+    width: 80%; 
+    margin-top: 80px; 
+    margin-bottom: 80px;
+    margin-left: 40px; 
+    font-size: 18px; 
+  }
+  b {
+    font-size: 16px;
+  }
 }
 </style>
